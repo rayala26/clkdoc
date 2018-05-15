@@ -14,14 +14,9 @@ module.exports = (sequelize, DataTypes) => {
   });
 
   Doctors.associate = function(models){
-  	Doctors.hasMany(models.Schedule, {
-  		onDelete: "cascade"
-  	});
-
   	Doctors.hasMany(models.Schedule,{
   		onDelete: "cascade"
   	});
-
   };
   return Doctors;
 };

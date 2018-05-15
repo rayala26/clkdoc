@@ -1,25 +1,23 @@
 //load bcrypt
 var bCrypt = require('bcrypt-nodejs');
-
-module.exports = function(passport, user) {
-    var User = user;
+ 
+module.exports = function(passport, client) {
+    var Client = client;
     var LocalStrategy = require('passport-local').Strategy;
     //serialize
-    passport.serializeUser(function(user, done) {
-        done(null, user.id);
+    passport.serializeUser(function(client, done) {
+        done(null, client.clientID);
     });
-
-    // deserialize user
-    passport.deserializeUser(function(id, done) {
-        User.findById(id).then(function(user) {
-            if (user) {
-                done(null, user.get());
+    // deserialize user 
+    passport.deserializeUser(function(clientID, done) {
+        Client.findById(clientID).then(function(client) {
+            if (client) {
+                done(null, client.get());
             } else {
-                done(user.errors, null);
+                done(Client.errors, null);
             }
         });
     });
-
     //LOCAL SIGNUP strategy
     passport.use('local-signup', new LocalStrategy(
         {
@@ -31,12 +29,12 @@ module.exports = function(passport, user) {
             var generateHash = function(password) {
                 return bCrypt.hashSync(password, bCrypt.genSaltSync(8), null);
             };
-            User.findOne({
+            Client.findOne({
                 where: {
                     email: email
                 }
-            }).then(function(user) {
-                if (user){
+            }).then(function(client) {
+                if (client){
                     return done(null, false, {
                         message: 'That email is already taken'
                     });
@@ -49,54 +47,60 @@ module.exports = function(passport, user) {
                             firstname: req.body.firstname,
                             lastname: req.body.lastname
                         };
-                    User.create(data).then(function(newUser, created) {
-                        if (!newUser) {
+                    Client.create(data).then(function(newClient, created) {
+                        if (!newClient) {
                             return done(null, false);
                         }
-                        if (newUser) {
-                            return done(null, newUser);
+                        if (newClient) {
+                            return done(null, newClient);
                         }
                     });
                 }
             });
         }
     ));
+    
     //LOCAL SIGNIN strategy
-    passport.use('local-signin', new LocalStrategy(
-    {
+    passport.use('local-signin', new LocalStrategy({
         // by default, local strategy uses username and password, we will override with email
         usernameField: 'email',
         passwordField: 'password',
         passReqToCallback: true // allows us to pass back the entire request to the callback
     },
+ 
     function(req, email, password, done) {
-        var User = user;
+        var Client = client;
         var isValidPassword = function(userpass, password) {
             return bCrypt.compareSync(password, userpass);
         }
-        User.findOne({
+        Client.findOne({
             where: {
                 email: email
             }
-        }).then(function(user) {
-            if (!user) {
+        }).then(function(client) {
+            if (!client) {
+ 
                 return done(null, false, {
                     message: 'Email does not exist'
                 });
             }
-            if (!isValidPassword(user.password, password)) {
+            if (!isValidPassword(client.password, password)) {
                 return done(null, false, {
                     message: 'Incorrect password.'
                 });
             }
-            var userinfo = user.get();
+ 
+            var userinfo = client.get();
             return done(null, userinfo);
+ 
         }).catch(function(err) {
             console.log("Error:", err);
             return done(null, false, {
                 message: 'Something went wrong with your Signin'
             });
         });
-    }
-));
+      }
+    ));
+ 
 }
+
