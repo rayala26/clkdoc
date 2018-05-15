@@ -1,2 +1,0 @@
-incomplete models are also imported when the app starts and this causes an error: TypeError: defineCall is not a function
-for this reason I've created this folder to save all models that we are gonna create but they aren't ready yet
