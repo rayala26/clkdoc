@@ -1,0 +1,3 @@
+USE clkdoc;
+
+INSERT INTO clients (ssn, name, address, city, state, zipCode, phoneNumber, insurance) VALUES (123456789,"Joey Perea", "9899 100 Street", "Miami", "Fl", 33176, "7864931114", "Blue Cross and Blue Shield"), (123422189,"Jacob Perea", "21 Brickell Avenue", "Miami", "Fl", 33146, "3054555678", "Medicare"), (198765432,"Albert Santos","6524 sw 65 Avenue", "Miami", "Fl", 33146, "3056091874", "Blue Cross and Blue Shield"), (984517092,"Jonathan Perea", "3661 S Desert Ave", "Tucson", "Az", 85001, "3057968820", "Aetna");

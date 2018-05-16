@@ -8,15 +8,16 @@ module.exports = (sequelize, DataTypes) => {
     state:{type: DataTypes.STRING, allowNull: false, validate:{len: [1]}},
     zipCode:{type: DataTypes.INTEGER, allowNull: false},
     phoneNumber:{type: DataTypes.STRING, allowNull: false, validate:{len: [1]}},
-    insurance:{type: DataTypes.STRING, allowNull: false, validate:{len: [1]}},
-    username:{type: DataTypes.STRING, allowNull: false, validate:{len: [1]}},
-    password:{type: DataTypes.STRING, allowNull: false, validate:{len: [1]}}
+    insurance:{type: DataTypes.STRING, allowNull: false, validate:{len: [1]}}
+  },{
+  	timestamps: false
   });
 
   Doctors.associate = function(models){
-  	Doctors.hasMany(models.Schedule,{
+  	Doctors.hasOne(models.Schedule, {
   		onDelete: "cascade"
   	});
+
   };
   return Doctors;
 };

@@ -1,14 +1,19 @@
 module.exports = (sequelize, DataTypes) => {
   var Schedule = sequelize.define("Schedule", {
     scheduleID: {type: DataTypes.INTEGER, autoIncrement: true , primaryKey: true},
-    day: {type: DataTypes.STRING, allowNull: false, validate:{len: [1]}},
-    time:{type: DataTypes.STRING, allowNull: false, validate:{len: [1]}},
+  },{
+    timestamps: false
   });
 
   Schedule.associate = function(models){
   	Schedule.belongsTo(models.Doctors, {
-  		foreignKey:{allowNull: false}
+  		foreignKey:{allowNull: false},
+      onDelete: "cascade"
   	});
+
+    Schedule.hasMany(models.Appointment, {
+      foreignKey:{allowNull: false}
+    });
 
   };
   return Schedule;
