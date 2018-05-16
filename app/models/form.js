@@ -17,7 +17,7 @@ module.exports = (sequelize, DataTypes) => {
   });
 
   Form.associate = function(models){
-  	Form.belongsTo(models.Clients, {
+  	Form.belongsTo(models.client, {
   		foreignKey:{allowNull: false}
   	});
   };

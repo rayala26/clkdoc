@@ -8,7 +8,7 @@ module.exports = (sequelize, DataTypes) => {
   });
 
    User.associate = function(models){
-    User.belongsTo(models.Clients, {
+    User.belongsTo(models.client, {
       foreignKey:{allowNull: false}
     });
   };
