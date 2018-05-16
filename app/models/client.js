@@ -1,91 +1,29 @@
-module.exports = function(sequelize, Sequelize) {
- 
-    var Client = sequelize.define('client', {
-//      ClientID
-        clientID: {
-            autoIncrement: true,
-            primaryKey: true,
-            type: Sequelize.INTEGER
-        },
-//      Social Security Number
-        ssn: {
-            type: Sequelize.INTEGER,
-            notEmpty: true
-        }, 
-//      First Name
-        firstname: {
-            type: Sequelize.STRING,
-            notEmpty: true
-        },
-//      Last Name
-        lastname: {
-            type: Sequelize.STRING,
-            notEmpty: true
-        },
-//      Address
-        address: {
-            type: Sequelize.STRING,
-            notEmpty: true
-        },
-//      City
-        city: {
-            type: Sequelize.STRING,
-            notEmpty: true
-        },
-//      State
-        state: {
-            type: Sequelize.STRING,
-            notEmpty: true
-        },
-//      Zip Code
-        zipCode: {
-            type: Sequelize.INTEGER,
-            notEmpty: true
-        },        
-//      Phone Number
-        phoneNumber: {
-            type: Sequelize.STRING,
-            notEmpty: true
-        },          
-//      Insurance
-        insurance: {
-            type: Sequelize.STRING,
-            notEmpty: true
-        },        
-//      User Name
-        username: {
-            type: Sequelize.TEXT,
-            notEmpty: true
-        },
-//      Email 
-        email: {
-            type: Sequelize.STRING,
-            validate: {
-                isEmail: true
-            }
-        },
-//      Password
-        password: {
-            type: Sequelize.STRING,
-            allowNull: false
-        },
-//      Last Login
-        last_login: {
-            type: Sequelize.DATE
-        },
-//      Status
-        status: {
-            type: Sequelize.ENUM('active', 'inactive'),
-            defaultValue: 'active'
-        }
+module.exports = (sequelize, DataTypes) => {
+  var Clients = sequelize.define("Clients", {
+    clientID: {type: DataTypes.INTEGER, autoIncrement: true , primaryKey: true},
+    firstName: {type: DataTypes.STRING, allowNull: false, validate:{len: [1]}},
+    lastName:{type: DataTypes.STRING, allowNull: false, validate:{len: [1]}},
+    email:{type: DataTypes.STRING, allowNull: false, validate:{len: [1]}},
+    password:{type: DataTypes.STRING, allowNull: false, validate:{len: [1]}},
+    last_login:{type: DataTypes.DATE, allowNull: false},
+    status: {type: DataTypes.ENUM('active', 'inactive'), defaultValue: 'active'}
+  },{
+    timestamps: false
+  });
+
+  Clients.associate = function(models){
+  	Clients.hasOne(models.Form, {
+  		onDelete: "cascade"
+  	});
+
+    Clients.hasOne(models.Appointment,{
+      onDelete: "cascade"
     });
-    
-    Client.associate = function(models){
-        Client.hasMany(models.Form, {
-            onDelete: "cascade"
-        });
-    };
-    
-    return Client;
- 
-}
+
+    Clients.hasOne(models.User,{
+      onDelete: "cascade"
+    });
+
+  };
+  return Clients;
+};
