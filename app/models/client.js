@@ -1,5 +1,5 @@
 module.exports = (sequelize, DataTypes) => {
-  var Clients = sequelize.define("client", {
+  var Client = sequelize.define("client", {
     clientID: {type: DataTypes.INTEGER, autoIncrement: true , primaryKey: true},
     firstname: {type: DataTypes.STRING, allowNull: false, validate:{len: [1]}},
     lastname:{type: DataTypes.STRING, allowNull: false, validate:{len: [1]}},
@@ -12,19 +12,19 @@ module.exports = (sequelize, DataTypes) => {
     timestamps: false
   });
 
-  Clients.associate = function(models){
-  	Clients.hasOne(models.Form, {
+  Client.associate = function(models){
+  	Client.hasOne(models.Form, {
   		onDelete: "cascade"
   	});
 
-    Clients.hasOne(models.Appointment,{
+    Client.hasOne(models.Appointment,{
       onDelete: "cascade"
     });
 
-    Clients.hasOne(models.User,{
+    Client.hasOne(models.User,{
       onDelete: "cascade"
     });
 
   };
-  return Clients;
+  return Client;
 };
