@@ -1,11 +1,12 @@
 module.exports = (sequelize, DataTypes) => {
-  var Clients = sequelize.define("Clients", {
+  var Clients = sequelize.define("client", {
     clientID: {type: DataTypes.INTEGER, autoIncrement: true , primaryKey: true},
-    firstName: {type: DataTypes.STRING, allowNull: false, validate:{len: [1]}},
-    lastName:{type: DataTypes.STRING, allowNull: false, validate:{len: [1]}},
-    email:{type: DataTypes.STRING, allowNull: false, validate:{len: [1]}},
-    password:{type: DataTypes.STRING, allowNull: false, validate:{len: [1]}},
-    last_login:{type: DataTypes.DATE, allowNull: false},
+    firstname: {type: DataTypes.STRING, allowNull: false, validate:{len: [1]}},
+    lastname:{type: DataTypes.STRING, allowNull: false, validate:{len: [1]}},
+    email:{type: DataTypes.STRING, validate:{isEmail: true}},
+    username:{type: DataTypes.STRING, notEmpty: true},
+    password:{type: DataTypes.STRING, notEmpty: true},
+    last_login:{type: DataTypes.DATE},
     status: {type: DataTypes.ENUM('active', 'inactive'), defaultValue: 'active'}
   },{
     timestamps: false

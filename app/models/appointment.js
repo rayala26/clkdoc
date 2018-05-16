@@ -8,7 +8,7 @@ module.exports = (sequelize, DataTypes) => {
   });
 
   Appointment.associate = function(models){
-  	Appointment.belongsTo(models.Clients, {
+  	Appointment.belongsTo(models.client, {
   		onDelete: "cascade"
   	});
 

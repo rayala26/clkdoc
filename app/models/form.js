@@ -1,5 +1,3 @@
-const multer = require("multer");
-
 module.exports = (sequelize, DataTypes) => {
   var Form = sequelize.define("Form", {
     ssn: {type: DataTypes.INTEGER, allowNull: false},
@@ -17,7 +15,7 @@ module.exports = (sequelize, DataTypes) => {
   });
 
   Form.associate = function(models){
-  	Form.belongsTo(models.Clients, {
+  	Form.belongsTo(models.client, {
   		foreignKey:{allowNull: false}
   	});
   };
