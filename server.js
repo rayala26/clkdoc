@@ -5,11 +5,32 @@ var session = require('express-session');
 var bodyParser = require('body-parser');
 var env = require('dotenv').load();
 var exphbs = require('express-handlebars');
+<<<<<<< HEAD
 
 // Static directory
 app.use(express.static("public"));
  
  
+=======
+var chalk = require('chalk');
+
+// Get port from environment and store in Express.
+var port = normalizePort(process.env.PORT || '3000');
+app.set('port', port); 
+// Normalize a port into a number, string, or false.
+function normalizePort(val) {
+  var port = parseInt(val, 10);
+  if (isNaN(port)) {
+    // named pipe
+    return val;
+  }
+  if (port >= 0) {
+    // port number
+    return port;
+  }
+  return false;
+} 
+>>>>>>> 9fc28e61e3edabbb57b6df5e6f56b803306883bb
 //For BodyParser
 app.use(bodyParser.urlencoded({
     extended: true
@@ -62,7 +83,7 @@ models.sequelize.sync().then(function() {
 });
  
 //START THE SERVER
-app.listen(5000, function(err) {
+app.listen(port, function(err) {
  
     if (!err)
  
