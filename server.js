@@ -5,6 +5,9 @@ var session = require('express-session');
 var bodyParser = require('body-parser');
 var env = require('dotenv').load();
 var exphbs = require('express-handlebars');
+
+// Static directory
+app.use(express.static("public"));
  
  
 //For BodyParser
@@ -43,7 +46,7 @@ var models = require("./app/models");
 var authRoute = require('./app/routes/auth.js')(app,passport);
 require("./app/routes/doctor-api-routes.js")(app);
 require("./app/routes/client-api-routes.js")(app);
- 
+require("./app/routes/html-routes.js")(app); 
 //load passport strategies
 require('./app/config/passport/passport.js')(passport, models.client);
  
