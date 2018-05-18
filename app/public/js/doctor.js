@@ -1,5 +1,8 @@
 // var apiKey = require('./../.env').apiKey;
 // var userLocation;
+  $("#home").submit(function(){
+    alert("Submitted");
+  });
 
   var name = specialty = address = city = state = zip = phone = insurance = "";
 
@@ -46,7 +49,7 @@
       //create doctor object
       var doc = {
 
-         name: name,
+        name: name,
         specialty: specialty,
         address: address,
         city: city,
