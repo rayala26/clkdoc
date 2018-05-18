@@ -17,5 +17,9 @@ module.exports = function(app) {
   app.get("/doctor-search", function(req, res) {
     res.render("doctor_search_test");
   });
+  // home
+  app.get("/", function(req, res) {
+    res.render('home');
+  });
 
 };

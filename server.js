@@ -53,7 +53,7 @@ app.set('view engine', '.hbs');
 app.use(express.static(path.join(__dirname,"app/public")));
 
 app.get('/', function(req, res) {
-    res.send('Welcome to Passport with Sequelize');
+    res.render('home');
 });
  
 //Models

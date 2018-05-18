@@ -1,7 +1,7 @@
 {
   "development": {
     "username": "root",
-    "password": "baseball",
+    "password": "",
     "database": "clkdoc",
     "host": "localhost",
     "dialect": "mysql"
