@@ -2,7 +2,7 @@ const db = require("../models");
 
 module.exports = function(app) {
   //first route will get back all the doctors with speciality that was passed in
-  app.get("/api/doctors/:speciality", function(req, res) {
+  app.get("/api/doctors/:specialty", function(req, res) {
     db.Doctors.findAll({
       where:{
       speciality: req.params.speciality
@@ -13,7 +13,7 @@ module.exports = function(app) {
   });
 
    //route returns all specialties as they are listed in the database
-  app.get("/api/speciality", function(req, res) {
+  app.get("/api/specialty", function(req, res) {
     // 1. Add a join to include all of each Author's Posts
     //you can use 'include: db.Schedule' inside the curly braces in the method to bring the doctor's schedule
     db.Doctors.findAll({attributes:["specialty"]}).then(function(specialities) {

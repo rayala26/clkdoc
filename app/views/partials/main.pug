@@ -25,11 +25,8 @@ body.body
       .w-form
         form#email-form.form(name='email-form', data-name='Email Form')
           label.field-label(for='name') PLEASE SELECT A SPECIALTY:
-          select#field.select-field.w-select(name='field', required='')
+          select#field.select-field.w-select(name='field', required='', data-id='select')
             option(value='') Select one...
-            option(value='First') First Choice
-            option(value='Second') Second Choice
-            option(value='Third') Third Choice
         .w-form-done
           div Thank you! Your submission has been received!
         .w-form-fail
