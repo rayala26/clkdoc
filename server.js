@@ -4,14 +4,9 @@ var passport = require('passport');
 var session = require('express-session');
 var bodyParser = require('body-parser');
 var env = require('dotenv').load();
+var path = require('path');
 var exphbs = require('express-handlebars');
-<<<<<<< HEAD
-
-// Static directory
-app.use(express.static("public"));
  
- 
-=======
 var chalk = require('chalk');
 
 // Get port from environment and store in Express.
@@ -30,7 +25,6 @@ function normalizePort(val) {
   }
   return false;
 } 
->>>>>>> 9fc28e61e3edabbb57b6df5e6f56b803306883bb
 //For BodyParser
 app.use(bodyParser.urlencoded({
     extended: true
@@ -55,7 +49,9 @@ app.engine('hbs', exphbs({
     extname: '.hbs'
 }));
 app.set('view engine', '.hbs');
- 
+  // Static directory
+app.use(express.static(path.join(__dirname,"app/public")));
+
 app.get('/', function(req, res) {
     res.send('Welcome to Passport with Sequelize');
 });
@@ -67,7 +63,8 @@ var models = require("./app/models");
 var authRoute = require('./app/routes/auth.js')(app,passport);
 require("./app/routes/doctor-api-routes.js")(app);
 require("./app/routes/client-api-routes.js")(app);
-require("./app/routes/html-routes.js")(app); 
+require("./app/routes/create-doctor-route.js")(app);
+require("./app/routes/html-routes.js")(app);
 //load passport strategies
 require('./app/config/passport/passport.js')(passport, models.client);
  
@@ -82,6 +79,7 @@ models.sequelize.sync().then(function() {
  
 });
  
+
 //START THE SERVER
 app.listen(port, function(err) {
  
