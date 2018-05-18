@@ -5,8 +5,6 @@ var session = require('express-session');
 var bodyParser = require('body-parser');
 var env = require('dotenv').load();
 var path = require('path');
-var exphbs = require('express-handlebars');
- 
 var chalk = require('chalk');
 
 // Get port from environment and store in Express.
@@ -43,12 +41,9 @@ app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
  
  
-//For Handlebars - TEMPLATE ENGINE
-app.set('views', './app/views')
-app.engine('hbs', exphbs({
-    extname: '.hbs'
-}));
-app.set('view engine', '.hbs');
+//For Pug as Template Engine
+app.set('views', path.join(__dirname, 'app/views'));
+app.set('view engine', 'pug');
   // Static directory
 app.use(express.static(path.join(__dirname,"app/public")));
 
