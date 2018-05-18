@@ -1,16 +1,18 @@
 const db = require("../models");
 
 module.exports = function(app) {
-  //first route will get back all the doctors with speciality
-  app.get("/api/doctors", function(req, res) {
-    // 1. Add a join to include all of each Author's Posts
-    //you can use 'include: db.Schedule' inside the curly braces in the method to bring the doctor's schedule
-    db.Doctors.findAll({}).then(function(dbDoctor) {
-      res.json(dbDoctor);
+  //first route will get back all the doctors with speciality that was passed in
+  app.get("/api/doctors/:speciality", function(req, res) {
+    db.Doctors.findAll({
+      where:{
+      speciality: req.params.speciality
+    }
+  }).then(function(dbDoctor) {
+      res.send(dbDoctor);
     });
   });
 
-   //first route will get back all the doctors with speciality
+   //route returns all specialties as they are listed in the database
   app.get("/api/speciality", function(req, res) {
     // 1. Add a join to include all of each Author's Posts
     //you can use 'include: db.Schedule' inside the curly braces in the method to bring the doctor's schedule
