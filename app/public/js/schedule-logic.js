@@ -5,10 +5,10 @@ $(document).ready(function(){
 	$.get("/api/doctors/selection",  function(data){
 		//we have an array that contains what the user selected
 		//get schedule
-		
+		$.get("/api/schedule/" + data[0].docId, function(schedule){
+			console.log(schedule);
+		});
 
 	});
 
 });
-
-
