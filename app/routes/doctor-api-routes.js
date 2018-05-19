@@ -45,7 +45,7 @@ module.exports = function(app) {
     });
   });
 
-    //route will return a schedule with the doctor ID that was passed(all appointments with that have been made with this doctor)
+    //route will return a schedule of all appointments that have been made with this doctor
   app.get("/api/schedule/:id", function(req, res) {
     // 2; Add a join to include all of the Author's Posts here
     db.Schedule.findOne({
@@ -68,6 +68,13 @@ module.exports = function(app) {
     //these are the posts
   app.post("/api/doctors/selection", function(req, res) {
     db.doctorChoice.create(req.body).then(function(dbAuthor) {
+      res.json(dbAuthor);
+    });
+  });
+
+     //these are the posts
+  app.post("/api/doctors/appointment", function(req, res) {
+    db.Appointment.create(req.body).then(function(dbAuthor) {
       res.json(dbAuthor);
     });
   });

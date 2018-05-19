@@ -20,7 +20,9 @@ $(document).ready(function(){
 	  		var zip = $("<div>Zip Code: </div>").text(docData[i].zipCode);
 	  		var phone = $("<div>Number: </div>").text(docData[i].phoneNumber);
 	  		var insurance = $("<div>Insurance: </div>").text(docData[i].insurance);
-	  		var button = $("<button>Select</button>").attr("data-id",docData[i].docID);
+	  		var button = $("<button></button>").attr("data-id",docData[i].docID);
+	  		var link = $("<a>Select</a>").attr("href", "/schedule");
+	  		button.append(link);
 	  		column.append(name, specialty,address,city,state,zip,phone,insurance,button);
 	  		container.append(column);
 	  	}
