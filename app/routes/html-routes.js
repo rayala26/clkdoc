@@ -22,4 +22,10 @@ module.exports = function(app) {
     res.render('home');
   });
 
+    // cms route loads cms.html
+  app.get("/doctors", function(req, res) {
+    res.render('doctors');
+  });
+
+
 };
