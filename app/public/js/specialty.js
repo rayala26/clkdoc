@@ -1,3 +1,4 @@
+var specialty = "";
 $(document).ready(function(){
 	//lets get an array of all specialties
 	$.get("/api/specialty", function(data){
@@ -19,6 +20,10 @@ $(document).ready(function(){
 	//attach a listener to the selected element
 	$("select").change(function(){
 		console.log($(this).val());
+		specialty = $(this).val();
+		//turn off all elements
+		//will fire or trnasfer the specialty
+		
 	});
 
 });

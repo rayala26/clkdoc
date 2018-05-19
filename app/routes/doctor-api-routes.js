@@ -5,10 +5,10 @@ module.exports = function(app) {
   app.get("/api/doctors/:specialty", function(req, res) {
     db.Doctors.findAll({
       where:{
-      speciality: req.params.speciality
+      specialty: req.params.specialty
     }
   }).then(function(dbDoctor) {
-      res.send(dbDoctor);
+      res.render("test");
     });
   });
 
