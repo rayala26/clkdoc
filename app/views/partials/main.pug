@@ -5,9 +5,8 @@ body.body
           span.text-span Login
           |  or
         .text-block-2.w-hidden-tiny Create account
-      img.image-6(src='images/logo.svg', width='102')
+      img.image-6(src='images/logo.svg', width='102', style='visibility: hidden')
       .div-block.w-clearfix(data-w-id='999ebef9-573e-976a-c70b-cbd29e3ee1b4', style='-webkit-transform:translateX(491%) translateY(0) translateZ(0) scaleX(1) scaleY(1) scaleZ(1) rotateX(0) rotateY(0) rotateZ(0) skewX(0) skewY(0);-moz-transform:translateX(491%) translateY(0) translateZ(0) scaleX(1) scaleY(1) scaleZ(1) rotateX(0) rotateY(0) rotateZ(0) skewX(0) skewY(0);-ms-transform:translateX(491%) translateY(0) translateZ(0) scaleX(1) scaleY(1) scaleZ(1) rotateX(0) rotateY(0) rotateZ(0) skewX(0) skewY(0);transform:translateX(491%) translateY(0) translateZ(0) scaleX(1) scaleY(1) scaleZ(1) rotateX(0) rotateY(0) rotateZ(0) skewX(0) skewY(0);opacity:0')
-        img.image-8(src='images/user.svg', width='69', data-w-id='c969b388-0cbd-e1dd-6b77-11ae6863d382')
         ul.w-list-unstyled
           li
             .text-block My Account
@@ -25,12 +24,15 @@ body.body
       .w-form
         form#email-form.form(name='email-form', data-name='Email Form')
           label.field-label(for='name') PLEASE SELECT A SPECIALTY:
-          select#field.select-field.w-select(name='field', required='', data-id='select')
+          select#field.select-field.w-select(name='field', required='')
             option(value='') Select one...
+            option(value='First') First Choice
+            option(value='Second') Second Choice
+            option(value='Third') Third Choice
+          button(type='submit') SEARCH
         .w-form-done
           div Thank you! Your submission has been received!
         .w-form-fail
           div Oops! Something went wrong while submitting the form.
       p.paragraph
         | Welcome to Doctors at Miami, Start getting your medical appoiment right now by selecting your zip code, insurance company (or pay option), and the specialist you need for, then click the Arrow to get the nearestspecialist who accepts your insurance.
-    // foot.pug

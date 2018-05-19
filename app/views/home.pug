@@ -2,6 +2,7 @@ doctype html
 html(data-wf-page='5aa9d7a8e147ab01473c7483', data-wf-site='5aa9d7a8e147abf5583c7482')
   // head.pug
   include includes/head.pug
-  include partials/main.pug
+  block content
+    include partials/main.pug
     include includes/foot.pug
     

@@ -48,7 +48,7 @@ app.set('view engine', 'pug');
 app.use(express.static(path.join(__dirname,"app/public")));
 
 app.get('/', function(req, res) {
-    res.render('home');
+    res.render('home',);
 });
  
 //Models
