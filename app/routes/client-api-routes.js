@@ -2,18 +2,21 @@ const db = require("../models");
 
 module.exports = function(app) {
   //first route will get back all the doctors
-  app.get("/api/clients", function(req, res) {
+  app.get("/api/client/user-choice", function(req, res) {
     // 1. Add a join to include all of each Author's Posts
     //you can use 'include: db.Schedule' inside the curly braces in the method to bring the doctor's schedule
-    db.Clients.findAll({}).then(function(dbClient) {
-      res.json(dbClient);
+    db.choice.findAll({
+      limit: 1,
+      order: [[ 'createdAt', 'DESC' ]]
+    }).then(function(choice) {
+      res.send(choice);
     });
   });
 
   //route will return the client with the passed ID
   app.get("/api/clients/:id", function(req, res) {
     // 2; Add a join to include all of the Author's Posts here
-    db.Clients.findOne({
+    db.client.findOne({
       where: {
         clientID: req.params.id
       }
@@ -23,8 +26,8 @@ module.exports = function(app) {
   });
 
   //these are the posts
-  app.post("/api/authors", function(req, res) {
-    db.Author.create(req.body).then(function(dbAuthor) {
+  app.post("/api/clients/choice", function(req, res) {
+    db.choice.create(req.body).then(function(dbAuthor) {
       res.json(dbAuthor);
     });
   });

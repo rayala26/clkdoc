@@ -1,5 +1,6 @@
-var specialty = "";
+var specialty = "test";
 $(document).ready(function(){
+
 	//lets get an array of all specialties
 	$.get("/api/specialty", function(data){
 	  console.log(data);
@@ -19,10 +20,19 @@ $(document).ready(function(){
 
 	//attach a listener to the selected element
 	$("select").change(function(){
-		console.log($(this).val());
+		
 		specialty = $(this).val();
+		console.log(specialty);
+		var s = {
+			choice: specialty
+		}
+		//post for choice
+		$.post("/api/clients/choice",s, function(){
+        console.log("hi")
+      });
 		//turn off all elements
 		//will fire or trnasfer the specialty
+		//post a choice 
 		
 	});
 
