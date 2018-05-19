@@ -27,5 +27,8 @@ module.exports = function(app) {
     res.render('doctors');
   });
 
-
+    // cms route loads cms.html
+  app.get("/schedule", function(req, res) {
+    res.render('schedule');
+  });
 };
