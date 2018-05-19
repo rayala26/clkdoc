@@ -134,11 +134,22 @@ $(document).ready(function(){
 		var schedId = $(this).attr("data-id");
 		var t = $(this).val();
 		t.split(":");
-		t = t[0];
+		if(t.length == 5){
+			var times = "";
+			console.log('hi', t.length)
+			for(var i = 0; i < 2; i++){
+			 	console.log("iteration ",i)
+			 	times += t[i];
+			 }
+		}
+		else{
+			var times = t[0];
+		}
+		
 
 		
 		s.day= d;
-		s.time = t;
+		s.time = times;
 		s.ScheduleScheduleID= parseInt(schedId);
 
 		console.log(s);
