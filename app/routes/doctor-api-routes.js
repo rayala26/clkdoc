@@ -8,7 +8,7 @@ module.exports = function(app) {
       specialty: req.params.specialty
     }
   }).then(function(dbDoctor) {
-      res.render("test");
+      res.send(dbDoctor);
     });
   });
 

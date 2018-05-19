@@ -30,10 +30,6 @@ $(document).ready(function(){
 		$.post("/api/clients/choice",s, function(){
         console.log("hi")
       });
-		//turn off all elements
-		//will fire or trnasfer the specialty
-		//post a choice 
-		
 	});
 
 });
