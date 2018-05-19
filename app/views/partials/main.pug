@@ -24,11 +24,8 @@ body.body
       .w-form
         form#email-form.form(name='email-form', data-name='Email Form')
           label.field-label(for='name') PLEASE SELECT A SPECIALTY:
-          select#field.select-field.w-select(name='field', required='')
+          select#field
             option(value='') Select one...
-            option(value='First') First Choice
-            option(value='Second') Second Choice
-            option(value='Third') Third Choice
           a(href="/doctors")   
             button(type='button') SEARCH
         .w-form-done
