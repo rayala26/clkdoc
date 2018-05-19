@@ -1,6 +1,18 @@
 const db = require("../models");
 
 module.exports = function(app) {
+
+  app.get("/api/doctors/selection", function(req, res) {
+    // 1. Add a join to include all of each Author's Posts
+    //you can use 'include: db.Schedule' inside the curly braces in the method to bring the doctor's schedule
+    db.doctorChoice.findAll({
+      limit: 1,
+      order: [[ 'createdAt', 'DESC' ]]
+    }).then(function(choice) {
+      res.send(choice);
+    });
+  });
+
   //first route will get back all the doctors with speciality that was passed in
   app.get("/api/doctors/:specialty", function(req, res) {
     db.Doctors.findAll({
@@ -46,15 +58,16 @@ module.exports = function(app) {
           ScheduleScheduleID: dbDoctor.scheduleID
         }
       }).then(function(dbAppointment){
-        res.json(dbAppointment);
+        res.send(dbAppointment);
       });
     });
   });
 
   //these are the posts
 
-  app.post("/api/authors", function(req, res) {
-    db.Author.create(req.body).then(function(dbAuthor) {
+    //these are the posts
+  app.post("/api/doctors/selection", function(req, res) {
+    db.doctorChoice.create(req.body).then(function(dbAuthor) {
       res.json(dbAuthor);
     });
   });

@@ -27,10 +27,19 @@ $(document).ready(function(){
 
 	  	//listener to element
 		$("button").click(function(){
-			console.log("clicked");
-			console.log($(this).attr("data-id"));
-      	});
+			//send the info to doctor choice
+			//post for choice
+			var id = {
+				docId: $(this).attr("data-id")
+			};
+
+			console.log(id);
+			$.post("/api/doctors/selection", id, function(){
+				console.log("hi");
+
+			});
 	  });
+	});
 	});
 
 	
